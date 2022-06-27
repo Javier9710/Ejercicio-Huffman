@@ -281,7 +281,15 @@ public class ListaS<T> implements Iterable<T>
             i++;            
         }        
         return (-1);        
-    }    
+    }
+
+    public Nodo<T> getCabeza() {
+        return cabeza;
+    }
+
+    public void setCabeza(Nodo<T> cabeza) {
+        this.cabeza = cabeza;
+    }
     
     
 }//Fin de la Clase ListaS

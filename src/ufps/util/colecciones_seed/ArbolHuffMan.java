@@ -30,6 +30,14 @@ public class ArbolHuffMan {
         this.cadena = cadena;
     }
     
+    public NodoHuffman getRaiz() {
+        return raiz;
+    }
+
+    public void setRaiz(NodoHuffman raiz) {
+        this.raiz = raiz;
+    }
+    
     
     
     /**
@@ -113,7 +121,7 @@ public class ArbolHuffMan {
                 mapa.put(cadena.charAt(i), 1);
             } 
         }
-        System.out.println("MAPA: " + mapa);
+        //System.out.println("MAPA: " + mapa);
         return mapa;
     }
     
@@ -133,6 +141,37 @@ public class ArbolHuffMan {
 //        }                     
         
         return la;
-    }    
+    }   
+    
+    public ListaS juntaNodo(ListaS l) {
+        Nodo<ArbolHuffMan> aux = l.getCabeza();
+        
+        Nodo<ArbolHuffMan> aux2 = null;
+        while ((aux != null) && (aux.getSig() != null)) {
+            l.setCabeza(aux.getSig());
+            aux.setSig(null);
+            aux2 = l.getCabeza();
+            l.setCabeza(aux2.getSig());
+            aux2.setSig(null);
+            NodoHuffman nuevo = this.uneNodos(aux, aux2);
+            //Arbol a = new Arbol(nuevo);
+            l.insertarOrdenado(nuevo);
+            aux = l.getCabeza();
+        }
+		// Arbol a=l.getInicio().getDato();
+        // a.enOrder(a.getRaiz());
+        // a.encuentraCamino(a.getRaiz(), "");
+        // System.out.println("dato: "+l.getInicio().getDato().getRaiz().getDato());
+        // System.out.println("letra: "+l.getInicio().getDato().getRaiz().getLetra());
+        return l;
+    }
+    
+       public NodoHuffman uneNodos(Nodo<ArbolHuffMan> a, Nodo<ArbolHuffMan> b) {
+        NodoHuffman c = new NodoHuffman('\u0000',((a.getInfo().getRaiz().getRepeticion()) + (b.getInfo().getRaiz().getRepeticion())));
+        c.setIzquierdo(a.getInfo().getRaiz());
+        c.setDerecho(b.getInfo().getRaiz());
+        //System.out.println("arbol: " + c.toString());
+        return c;
+    }
     
 }

@@ -6,6 +6,7 @@
 package ufps.vistas;
 
 import ufps.util.colecciones_seed.ArbolHuffMan;
+import ufps.util.colecciones_seed.ListaS;
 
 /**
  *
@@ -17,7 +18,8 @@ public class Test_examen {
     public static void main(String[] args) {
         ArbolHuffMan arbol = new ArbolHuffMan("sistemas");
         //arbol.cantidadLetrasRep();
-        arbol.cuentaLetras2();
+        ListaS x = arbol.cuentaLetras2();
+        arbol.juntaNodo(x);
     }
     
 }
